@@ -4,7 +4,7 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 project_name=geetest_crack_test
 image_name='geetest_docker'
-image_path="/home/work/env/${image_name}.image"
+image_path="/data/env/${image_name}.image"
 project_path=`pwd`
 
 image_exist() {
