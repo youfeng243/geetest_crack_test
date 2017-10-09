@@ -13,6 +13,8 @@ rm -rf ./tmp/squid
 mkdir -p ./tmp/squid
 cd ./tmp/squid
 
+rm -rf squid-${SQUID_VERSION}
+
 tar xzf ${DIR}/packages/squid-${SQUID_VERSION}.tar.gz
 cd squid-${SQUID_VERSION}
 
