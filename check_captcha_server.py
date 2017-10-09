@@ -28,7 +28,7 @@ def test_machine(url, machine):
     print "当前测试机器: {}".format(machine)
     pool = ThreadPool(processes=10)
     result_list = []
-    try_times = 10
+    try_times = 20
     times = 0
     with open("proxies.conf") as p_file:
         for line in p_file:
