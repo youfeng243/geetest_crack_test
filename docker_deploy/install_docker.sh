@@ -4,8 +4,6 @@
 build_path=/data/geetest_crack_test
 # 生成docker镜像脚本
 build_sh_name=build_docker.sh
-# 需要加入docker组的用户
-user=work
 # docker 镜像保存路径位置
 image_path="/data/env/"
 mkdir -p ${image_path}
@@ -29,7 +27,6 @@ install() {
     sudo yum makecache fast
     sudo yum install -y  docker-ce
     sudo groupadd docker
-    sudo gpasswd -a ${user} docker
     sudo systemctl restart docker
 }
 
@@ -72,9 +69,6 @@ build_image() {
 
     docker save ${docker_name} > ${image_path}${image_name}
     echo "镜像保存完成..."
-
-     # 修正属性
-    chown ${user}:${user} -R ${image_real_path}
 
     docker images
 
