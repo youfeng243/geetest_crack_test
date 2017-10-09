@@ -1,12 +1,12 @@
 FROM hub.c.163.com/library/debian:8.6
 #RUN echo "deb http://mirrors.163.com/debian jessie main" > /etc/apt/sources.list
 #RUN echo "deb http://mirrors.163.com/debian jessie-updates main" >> /etc/apt/sources.list
-echo "deb http://mirrors.ustc.edu.cn/debian jessie main contrib non-free" > /etc/apt/sources.list
-echo "deb-src http://mirrors.ustc.edu.cn/debian jessie main contrib non-free" > /etc/apt/sources.list
-echo "deb http://mirrors.ustc.edu.cn/debian jessie-proposed-updates main contrib non-free" > /etc/apt/sources.list
-echo "deb-src http://mirrors.ustc.edu.cn/debian jessie-proposed-updates main contrib non-free" > /etc/apt/sources.list
-echo "deb http://mirrors.ustc.edu.cn/debian jessie-updates main contrib non-free" > /etc/apt/sources.list
-echo "deb-src http://mirrors.ustc.edu.cn/debian jessie-updates main contrib non-free" > /etc/apt/sources.list
+RUN echo "deb http://mirrors.ustc.edu.cn/debian jessie main contrib non-free" > /etc/apt/sources.list
+RUN echo "deb-src http://mirrors.ustc.edu.cn/debian jessie main contrib non-free" >> /etc/apt/sources.list
+RUN echo "deb http://mirrors.ustc.edu.cn/debian jessie-proposed-updates main contrib non-free" >> /etc/apt/sources.list
+RUN echo "deb-src http://mirrors.ustc.edu.cn/debian jessie-proposed-updates main contrib non-free" >> /etc/apt/sources.list
+RUN echo "deb http://mirrors.ustc.edu.cn/debian jessie-updates main contrib non-free" >> /etc/apt/sources.list
+RUN echo "deb-src http://mirrors.ustc.edu.cn/debian jessie-updates main contrib non-free" >> /etc/apt/sources.list
 
 RUN apt-get update && apt-get install -y bzip2 curl vim htop python-pip libtiff5-dev libjpeg62-turbo-dev zlib1g-dev libfreetype6-dev liblcms2-dev libwebp-dev tcl8.6-dev tk8.6-dev python-tk python-dev make cmake tar psmisc python-opencv net-tools  squid3 && rm -rf /var/lib/apt/lists/*
 
