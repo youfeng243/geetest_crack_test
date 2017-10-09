@@ -1,0 +1,7 @@
+{
+    "searchBtnSelector": "#click",
+    "searchText": "数据技术",
+    "searchInputSelector": "#searchText",
+    "url": "http://ha.gsxt.gov.cn/index.jspx",
+    "resultIndicatorSelector": "#searchtips"
+}

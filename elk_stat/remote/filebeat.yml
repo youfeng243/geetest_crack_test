@@ -1,0 +1,12 @@
+filebeat.prospectors:
+- input_type: log
+  paths:
+    - /home/centos/geetest_service/gitrepo/geetest_crack_test/node-proj/src/tmp/nohup.out.*
+  include_lines: ["^===="]
+  document_type: "hdyzm"
+
+name: hdyzm
+
+output.logstash:
+  hosts: ["es1:25044"]
+  proxy_url: socks5://127.0.0.1:21080

@@ -1,0 +1,8 @@
+{
+	"url": "http://sh.gsxt.gov.cn/notice",
+	"searchInputSelector": "#keyword",
+	"searchBtnSelector": "#buttonSearch",
+	"searchText": "数据科技",
+	"successIndicatorSelector": ".contentA",
+	"resultIndicatorSelector": [".tableContent.page-item"]
+}

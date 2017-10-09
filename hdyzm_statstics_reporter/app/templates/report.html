@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- 可选的 Bootstrap 主题文件（一般不用引入） -->
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    -->
+    
+    <script src="//cdn.bootcss.com/echarts/3.4.0/echarts.min.js"></script>
+
+    <title>Report</title>
+
+    <style>
+    body {
+        margin: 1em;
+    }
+    .table {
+        margin: 1em 0;
+    }
+    </style>
+
+</head>
+
+{% macro table(rows, header=True, class="table table-bordered", style="width: initial;") -%}
+<table class="{{ class }}" style="{{ style }}">
+    {% for row in rows %}
+    {% set outloop = loop %}
+    <tr>
+        {% for col in row %}
+            {% if outloop.first and header %}<th>{% else %}<td>{% endif %}
+                {{ col }}
+            {% if outloop.first and header %}</th>{% else %}</td>{% endif %}
+        {% endfor %}
+    </tr>
+    {% endfor %}
+</table>
+{%- endmacro %}
+
+
+<body>
+    <h3>统计起止时间：
+    <span>从 {{dt_from}}</span>
+    <span>到 {{dt_to}}</span>
+    </h3>
+
+    <br/>
+
+    <h2>成功率统计</h2>
+    {{ table(status_table) }}
+    <p>总成功率 n<sub>0</sub>/(n<sub>total</sub>) ： {{ total_success_rate }}  </p>
+    <p>排除网络问题成功率 n<sub>0</sub>/(n<sub>total</sub> - n<sub>-1</sub>) ： {{ total_success_rate2 }}  </p>
+
+    <br/>
+
+
+    <h2>站点-成功率统计</h2>
+    {{ table(site_status_table) }}
+
+
+    <br/>
+    <h2>验证码破解服务实例-成功率统计</h2>
+    {{ table(instance_status_table) }}
+
+
+    <br/>
+    <h2>破解成功(status==0)的耗时统计</h2>
+    <p>总体平均值：{{ total_avg }}</p> 
+    <p>总体分位值统计：</p>
+    {{ table(percentile_table) }}
+    <p>分布：</p>
+    {{ table(timecost_range_table) }}
+
+    <br/>
+    <p>*可以到<a href="http://cs5:23450/" target="_blank">http://cs5:23450/</a>查看更多日期的统计数据</p>
+</body>
+</html>

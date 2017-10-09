@@ -1,0 +1,8 @@
+{
+    "searchBtnSelector": "#btnSearch",
+    "searchText": "数据科技",
+    "searchInputSelector": "#txtSearch",
+    "url": "http://jl.gsxt.gov.cn/",
+    "successIndicatorSelector": ".m-search-list",
+    "resultIndicatorSelector": ".m-searchresult-inoformation"
+}

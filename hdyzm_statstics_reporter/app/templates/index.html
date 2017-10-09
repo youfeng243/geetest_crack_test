@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/static/bootstrap-datepicker/bootstrap-datepicker3.standalone.min.css">
+    <script src="/static/jquery-3.1.1.min.js"></script>
+    <script src="/static/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
+    <script src="/static/bootstrap-datepicker/bootstrap-datepicker.zh-CN.min.js"></script>
+
+    <title>滑动验证码破解统计</title>
+
+<style>
+html, body {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+}
+.container {
+    box-sizing: border-box;
+    height: 100%;
+    padding: 1em;
+}
+.top {
+    height: 2em;
+}
+.content {
+    width: 100%;
+    height: calc(100% - 4em);
+}
+</style>
+
+<script>
+    $(function(){
+        function show() {
+            var ts = $('#reportDate').datepicker('getDate').getTime();
+            console.log(ts);
+            $('#frmContent').attr('src', '/report?ts_from=' + Math.floor(ts / 1000));
+        }
+        $('#reportDate').datepicker({
+            format: 'yyyy-mm-dd',
+            language: 'zh-CN'
+        });
+        var currentDate = new Date();
+        currentDate.setHours(0, 0, 0, 0);
+        $('#reportDate').datepicker('setDate', currentDate);
+        $('#btnView').click(show);
+        show();
+    })
+</script>
+
+</head>
+<body>
+    <div class="container">
+        <p class="top">日期：<input id="reportDate"> <button id="btnView">查看</button></p>
+        <iframe id="frmContent" class="content" src="" frameborder="1"></iframe>
+    </div>
+</body>
+</html>

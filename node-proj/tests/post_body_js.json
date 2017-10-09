@@ -1,0 +1,8 @@
+{
+	"url": "http://www.jsgsj.gov.cn:58888/province/login.jsp",
+	"searchInputSelector": "#name",
+	"searchBtnSelector": "#popup-submit",
+	"searchText": "数据",
+	"successIndicatorSelector": ".gt_ajax_tip.success",
+	"resultIndicatorSelector": "div.search-result"
+}

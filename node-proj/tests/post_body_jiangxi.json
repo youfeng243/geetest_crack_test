@@ -1,0 +1,8 @@
+{
+	"url": "http://jx.gsxt.gov.cn/index.jsp",
+	"searchInputSelector": "#searchkey",
+	"searchBtnSelector": "#serach",
+	"searchText": "数据",
+	"successIndicatorSelector": ".sea2",
+	"resultIndicatorSelector": ".sea_007"
+}

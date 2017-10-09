@@ -1,0 +1,10 @@
+{
+    "searchBtnSelector": "#s-btn",
+    "searchText": "重庆西南铝进出口有限责任公司",
+    "searchInputSelector": "#s_txt_ipt",
+    "url": "http://cq.gsxt.gov.cn/",
+    "resultIndicatorSelector": ".r_s_tip_wr",
+    "proxy": "hz:hz@123.207.122.200:7777",
+    "__SPECIAL_HACK_FOR_CHONGQING__CLICK_FIRST__": false,
+    "__SPECIAL_HACK_FOR_CHONGQING__ADD_LINK__": true
+}

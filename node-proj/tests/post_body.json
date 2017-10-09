@@ -1,0 +1,7 @@
+{
+	"url": "http://192.168.184.10:5000/",
+	"searchInputSelector": "#username2",
+	"searchBtnSelector": "#username2",
+	"searchText": "数据",
+	"resultIndicatorSelector": ".gt_ajax_tip.success"
+}

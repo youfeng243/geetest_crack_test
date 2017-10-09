@@ -1,0 +1,33 @@
+FROM hub.c.163.com/library/debian:8.6
+RUN echo "deb http://mirrors.163.com/debian jessie main" > /etc/apt/sources.list
+RUN echo "deb http://mirrors.163.com/debian jessie-updates main" >> /etc/apt/sources.list
+RUN apt-get update && apt-get install -y bzip2 curl vim htop python-pip libtiff5-dev libjpeg62-turbo-dev zlib1g-dev libfreetype6-dev liblcms2-dev libwebp-dev tcl8.6-dev tk8.6-dev python-tk python-dev make cmake tar psmisc python-opencv net-tools  squid3 && rm -rf /var/lib/apt/lists/*
+
+RUN apt-get update
+RUN apt-get -y upgrade
+RUN alias cp='cp'
+#RUN dpkg-reconfigure dash
+RUN echo "dash dash/sh boolean false" | debconf-set-selections
+RUN DEBIAN_FRONTEND=noninteractive dpkg-reconfigure dash
+RUN ls -l `which sh`
+ADD / /root/geetest_crack_test/
+WORKDIR  /root/geetest_crack_test
+
+RUN mkdir /root/.pip
+RUN cp /root/geetest_crack_test/docker_deploy/pip.conf /root/.pip/
+RUN pip install -U pip
+RUN pip install -r  /root/geetest_crack_test/docker_deploy/requirements.txt
+
+RUN cd /root/geetest_crack_test/scripts && sh deploy_nodejs.sh
+RUN cd /root/geetest_crack_test/scripts && sh deploy_phantomjs.sh
+RUN cd /root/geetest_crack_test/node-proj && export PATH="/root/geetest_crack_test/deploy/phantomjs/bin:/root/geetest_crack_test/deploy/node/bin:/root/geetest_crack_test/bin:$PATH" && npm install phantomjs-prebuilt@2.1.14  --registry=https://registry.npm.taobao.org --ignore-scripts
+RUN echo 'export PATH="/root/geetest_crack_test/deploy/phantomjs/bin:/root/geetest_crack_test/deploy/node/bin:/root/geetest_crack_test/bin:$PATH"' >> /root/.bashrc && . /root/.bashrc && cd /root/geetest_crack_test/node-proj && npm install --registry=https://registry.npm.taobao.org
+
+#RUN cd /root/geetest_crack_test/scripts && sh build_squid.sh 
+RUN rm -rf /var/lib/apt/lists/*
+RUN cp -f /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+RUN chmod +x -R /root/geetest_crack_test/deploy
+RUN chown root:root -R /root/geetest_crack_test
+RUN chmod +x /root/geetest_crack_test/docker_deploy/docker_start.sh
+CMD ["/root/geetest_crack_test/docker_deploy/docker_start.sh"]
+#CMD ["/bin/bash"]

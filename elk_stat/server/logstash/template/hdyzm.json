@@ -1,0 +1,13 @@
+{
+  "template": "hdyzm*",
+  "mappings": {
+    "_default_": {
+      "properties": {
+        "hdyzm_status": { "type": "long" },
+        "hdyzm_seq": { "type": "long" },
+        "hdyzm_start": { "type": "date" },
+        "hdyzm_timeCost": { "type": "long" }
+      }
+    }
+  }
+}

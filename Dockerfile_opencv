@@ -1,0 +1,18 @@
+FROM geetest_test
+
+RUN alias cp='cp'
+ADD / /root/geetest_crack_test/
+WORKDIR  /root/geetest_crack_test
+
+
+#RUN export PATH="/root/geetest_crack_test/deploy/phantomjs/bin:/root/geetest_crack_test/deploy/node/bin:/root/geetest_crack_test/bin:$PATH" && npm install phantomjs-prebuilt@2.1.14  --registry=https://registry.npm.taobao.org
+#RUN echo 'export PATH="/root/geetest_crack_test/deploy/phantomjs/bin:/root/geetest_crack_test/deploy/node/bin:/root/geetest_crack_test/bin:$PATH"' >> /root/.bashrc && . /root/.bashrc && cd /root/geetest_crack_test/node-proj && npm install --registry=https://registry.npm.taobao.org
+
+RUN tar zxvf /root/geetest_crack_test/docker_deploy/opencv-3.2.0.tar.gz
+RUN cd /root/geetest_crack_test/opencv-3.2.0 && mkdir build && cd build && cmake -D CMAKE_BUILD_TYPE=RELEASE -D CMAKE_INSTALL_PREFIX=/usr/local .. && make -j && make install && ldconfig    && make clean
+RUN rm -rf /var/lib/apt/lists/*
+RUN cp -f /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+
+RUN chmod +x /root/geetest_crack_test/docker_deploy/docker_start.sh
+#CMD ["/root/geetest_crack_test/docker_deploy/docker_start.sh"]
+CMD ["/bin/bash"]

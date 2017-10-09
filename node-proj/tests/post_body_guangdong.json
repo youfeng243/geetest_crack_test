@@ -1,0 +1,8 @@
+{
+	"url": "http://gd.gsxt.gov.cn/",
+	"searchInputSelector": "#content",
+	"searchBtnSelector": "#search",
+	"searchText": "数据",
+	"successIndicatorSelector": ".mianBodyStyle",
+	"resultIndicatorSelector": [".mianBodyStyle .rsfont", ".dataTextStyle"]
+}

@@ -1,0 +1,7 @@
+{
+	"url": "http://tj.gsxt.gov.cn/",
+	"searchInputSelector": "#keyword",
+	"searchBtnSelector": "#btn_query",
+	"searchText": "数据",
+	"resultIndicatorSelector": "div.search_result"
+}

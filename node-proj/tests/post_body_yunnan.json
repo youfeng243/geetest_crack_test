@@ -1,0 +1,8 @@
+{
+	"searchBtnSelector": "#buttonSearch",
+	"searchText": "云南鸿翔一心堂药业",
+	"searchInputSelector": "#keyword",
+	"url": "http://yn.gsxt.gov.cn/notice/home",
+	"resultIndicatorSelector": "div.contentA div.contentA1 p",
+	"proxy": "hz:hz@120.26.76.87:7777"
+}

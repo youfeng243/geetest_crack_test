@@ -1,0 +1,7 @@
+{
+	"url":"http://zj.gsxt.gov.cn/client/entsearch/toEntSearch",
+	"searchInputSelector":"#form > input.se-box",
+	"searchText":"电缆",
+	"searchBtnSelector":"#popup-submit",
+	"resultIndicatorSelector":".enterprise-info-list"
+}

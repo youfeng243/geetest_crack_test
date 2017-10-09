@@ -1,0 +1,14 @@
+{
+    "http://static.geetest.com/static/js/geetest.5.7.0.js": {
+        "contentFile": "./hacking_libs/geetest.5.7.0-hack.js",
+        "contentType": "application/javascript"
+    },
+    "http://static.geetest.com/static/js/geetest.5.8.0.js": {
+        "contentFile": "./hacking_libs/geetest.5.8.0-hack.js",
+        "contentType": "application/javascript"
+    },
+    "http://static.geetest.com/static/js/geetest.0.0.0.js": {
+        "contentFile": "./hacking_libs/geetest.5.7.0-hack.js",
+        "contentType": "application/javascript"
+    }
+}
