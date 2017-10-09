@@ -1,13 +1,13 @@
 #!/bin/bash
 
 # 生成docker镜像脚本位置 这里是工程根目录路径
-build_path=/home/work/apps/geetest_crack_test
+build_path=/data/geetest_crack_test
 # 生成docker镜像脚本
 build_sh_name=build_docker.sh
 # 需要加入docker组的用户
 user=work
 # docker 镜像保存路径位置
-image_path="/home/${user}/env/"
+image_path="/data/env/"
 mkdir -p ${image_path}
 # docker本地文件保存镜像名称
 image_name=geetest_docker.image
