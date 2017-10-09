@@ -94,7 +94,12 @@ import_image () {
 
 auto_install() {
     echo "auto_install start"
-        
+
+    # 安装squid
+    cd ../scripts
+    sh build_squid.sh
+    cd ${build_path}/docker_deploy/
+
     # 先判断依赖环境是否已经安装
     pid=`ps -ef | grep dockerd | grep -v grep | awk '{print $2}'`
     if [ -z "${pid}" ]; then
