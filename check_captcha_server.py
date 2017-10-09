@@ -24,17 +24,6 @@ def test_post(proxy, url):
         return 100, "fail"
     return page.status_code, page.content
 
-
-machine_list = [
-    "cs3:3000",
-    "cs7:3000",
-    "cs8:3000",
-    "cs9:3000",
-    "182.61.44.214:3000",
-    "182.61.37.114:3000",
-]
-
-
 def test_machine(url, machine):
     print "当前测试机器: {}".format(machine)
     pool = ThreadPool(processes=10)
