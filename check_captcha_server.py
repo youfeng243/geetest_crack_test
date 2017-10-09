@@ -12,17 +12,17 @@ def test_post(proxy, url):
         print "当前测试代理: proxy = {}".format(proxy)
         json = {
             "proxy": proxy,
-            "searchBtnSelector": "#btnSearch",
-            "searchText": u"数据科技有限",
-            "searchInputSelector": "#txtSearch",
-            "url": "http://jl.gsxt.gov.cn/",
-            "successIndicatorSelector": ".m-search-list",
-            "resultIndicatorSelector": ".m-searchresult-inoformation"
+            "searchBtnSelector": "#search",
+            "searchText": u"数据科技",
+            "searchInputSelector": "#content",
+            "url": "http://gd.gsxt.gov.cn/",
+            "resultIndicatorSelector": ".mianBodyStyle"
         }
         page = requests.post(url, json=json)
     except Exception:
         return 100, "fail"
     return page.status_code, page.content
+
 
 def test_machine(url, machine):
     print "当前测试机器: {}".format(machine)
@@ -36,7 +36,7 @@ def test_machine(url, machine):
             line = line.strip()
             proxy = "http://" + line
             result_list.append(pool.apply_async(test_post, args=(proxy, url,)))
-            if len(result_list) >= 10:
+            if len(result_list) >= 20:
                 for result in result_list:
                     code, content = result.get()
                     if code == 200 and len(content) >= 1000:
