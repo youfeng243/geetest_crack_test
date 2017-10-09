@@ -100,8 +100,6 @@ import_image () {
 
 auto_install() {
     echo "auto_install start"
-    echo "5秒后开始docker环境安装...如需中断请Ctrl+C..."
-    sleep 5
         
     # 先判断依赖环境是否已经安装
     pid=`ps -ef | grep dockerd | grep -v grep | awk '{print $2}'`
