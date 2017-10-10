@@ -15,14 +15,26 @@ mail_from_addr = 'datamonitor@haizhi.com'
 mail_password = 'LcoS!WKXmWmFu2Or'
 mail_to_addrs = ['youfeng@haizhi.com', 'zhangjun@haizhi.com']
 
-
 # mail_to_addrs = ['youfeng@haizhi.com']
 
+static_proxy_url = 'http://112.74.163.187:23128/__static__/proxies.txt'
 
-def post_url(line, url):
+proxy_list = []
+r = requests.get(static_proxy_url, timeout=10)
+if r is None or r.status_code != 200:
+    raise Exception("代理更新异常...")
+line_list = r.text.strip().split('\n')
+for line in line_list:
+    line = line.strip().strip("\r").strip("\n")
+    if len(line) <= 0:
+        continue
+    proxy_list.append(line)
+
+
+def post_url(proxy, url):
     try:
         json = {
-            "proxy": line,
+            "proxy": proxy,
             "searchBtnSelector": "#btnSearch",
             "searchText": u"数据科技有限",
             "searchInputSelector": "#txtSearch",
@@ -52,11 +64,6 @@ def check_machine(url, machine):
     log.info("当前测试机器: {}".format(machine))
     pool = ThreadPool(processes=1)
     result_list = []
-    proxy_list = []
-    with open("proxies.conf") as p_file:
-        for line in p_file:
-            line = line.strip()
-            proxy_list.append(line)
     try_times = 0
     while try_times <= 50:
         try_times += 1

@@ -4,6 +4,19 @@ from multiprocessing.dummy import Pool as ThreadPool
 
 import requests
 
+static_proxy_url = 'http://112.74.163.187:23128/__static__/proxies.txt'
+
+proxy_list = []
+r = requests.get(static_proxy_url, timeout=10)
+if r is None or r.status_code != 200:
+    raise Exception("代理更新异常...")
+line_list = r.text.strip().split('\n')
+for line in line_list:
+    line = line.strip().strip("\r").strip("\n")
+    if len(line) <= 0:
+        continue
+    proxy_list.append(line)
+
 
 # 获取动态代理
 def test_post(proxy, url):
@@ -30,12 +43,12 @@ def test_machine(url, machine):
     try_times = 20
     times = 0
 
-    proxy_list = []
-    with open("proxies.conf") as p_file:
-        for line in p_file:
-            line = line.strip()
-            proxy = "http://" + line
-            proxy_list.append(proxy)
+    # proxy_list = []
+    # with open("proxies.conf") as p_file:
+    #     for line in p_file:
+    #         line = line.strip()
+    #         proxy = "http://" + line
+    #         proxy_list.append(proxy)
 
     while times < try_times:
         proxy = random.choice(proxy_list)
