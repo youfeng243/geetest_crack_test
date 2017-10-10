@@ -1,12 +1,11 @@
 # encoding=utf-8
+import random
 from multiprocessing.dummy import Pool as ThreadPool
 
 import requests
 
 
 # 获取动态代理
-
-
 def test_post(proxy, url):
     try:
         print "当前测试代理: proxy = {}".format(proxy)
@@ -19,35 +18,38 @@ def test_post(proxy, url):
             "resultIndicatorSelector": ".mianBodyStyle"
         }
         page = requests.post(url, json=json)
-    except Exception:
+    except:
         return 100, "fail"
     return page.status_code, page.content
 
 
 def test_machine(url, machine):
     print "当前测试机器: {}".format(machine)
-    pool = ThreadPool(processes=10)
+    pool = ThreadPool(processes=5)
     result_list = []
     try_times = 20
     times = 0
+
+    proxy_list = []
     with open("proxies.conf") as p_file:
         for line in p_file:
-
             line = line.strip()
             proxy = "http://" + line
-            result_list.append(pool.apply_async(test_post, args=(proxy, url,)))
-            if len(result_list) >= 20:
-                for result in result_list:
-                    code, content = result.get()
-                    if code == 200 and len(content) >= 1000:
-                        print "当前机器滑动验证码服务OK {} code = {} content len = {}".format(machine, code, len(content))
-                        pool.close()
-                        pool.join()
-                        return True, "当前机器滑动验证码服务OK {} code = {} content len = {}".format(machine, code, len(content))
-                del result_list[:]
-            times += 1
-            if times >= try_times:
-                break
+            proxy_list.append(proxy)
+
+    while times < try_times:
+        proxy = random.choice(proxy_list)
+        result_list.append(pool.apply_async(test_post, args=(proxy, url,)))
+        if len(result_list) >= 5:
+            for result in result_list:
+                code, content = result.get()
+                if code == 200 and len(content) >= 1000:
+                    print "当前机器滑动验证码服务OK {} code = {} content len = {}".format(machine, code, len(content))
+                    pool.close()
+                    pool.join()
+                    return True, "当前机器滑动验证码服务OK {} code = {} content len = {}".format(machine, code, len(content))
+            del result_list[:]
+        times += 1
     print "当前机器滑动验证码服务存在问题: {}".format(machine)
     pool.close()
     pool.join()
