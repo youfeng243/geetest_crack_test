@@ -30,6 +30,8 @@ for line in line_list:
         continue
     proxy_list.append("http://" + line)
 
+print '更新代理成功...'
+
 
 def post_url(proxy, url):
     try:

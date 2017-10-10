@@ -17,6 +17,8 @@ for line in line_list:
         continue
     proxy_list.append("http://" + line)
 
+print '更新代理成功...'
+
 
 # 获取动态代理
 def test_post(proxy, url):
