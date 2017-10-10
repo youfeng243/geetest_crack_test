@@ -7,7 +7,7 @@ import requests
 static_proxy_url = 'http://112.74.163.187:23128/__static__/proxies.txt'
 
 proxy_list = []
-r = requests.get(static_proxy_url, timeout=10)
+r = requests.get(static_proxy_url, timeout=40)
 if r is None or r.status_code != 200:
     raise Exception("代理更新异常...")
 line_list = r.text.strip().split('\n')
