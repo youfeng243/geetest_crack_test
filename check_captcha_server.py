@@ -15,7 +15,7 @@ for line in line_list:
     line = line.strip().strip("\r").strip("\n")
     if len(line) <= 0:
         continue
-    proxy_list.append(line)
+    proxy_list.append("http://" + line)
 
 
 # 获取动态代理
