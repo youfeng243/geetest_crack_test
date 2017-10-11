@@ -17,17 +17,17 @@ docker_name=geetest_docker
 
 install() {
     echo "开始执行安装, 这里需要root权限.."
-    sudo yum remove docker \
+    yum remove docker \
                   docker-common \
                   container-selinux \
                   docker-selinux \
                   docker-engine
-    sudo yum install -y yum-utils
-    sudo yum-config-manager --add-repo  https://download.docker.com/linux/centos/docker-ce.repo
-    sudo yum makecache fast
-    sudo yum install -y  docker-ce
-    sudo groupadd docker
-    sudo systemctl restart docker
+    yum install -y yum-utils
+    yum-config-manager --add-repo  https://download.docker.com/linux/centos/docker-ce.repo
+    yum makecache fast
+    yum install -y  docker-ce
+    groupadd docker
+    systemctl restart docker
 }
 
 docker_exist() {
@@ -97,6 +97,7 @@ auto_install() {
 
     # 安装squid
     cd ../scripts
+    sh yum_install.sh
     sh build_squid.sh
     cd ${build_path}/docker_deploy/
 
