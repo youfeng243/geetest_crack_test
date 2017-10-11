@@ -26,11 +26,12 @@ def test_post(proxy, url):
         print "当前测试代理: proxy = {}".format(proxy)
         json = {
             "proxy": proxy,
-            "searchBtnSelector": "#search",
-            "searchText": u"数据科技",
-            "searchInputSelector": "#content",
-            "url": "http://gd.gsxt.gov.cn/",
-            "resultIndicatorSelector": ".mianBodyStyle"
+            "searchBtnSelector": "#btnSearch",
+            "searchText": u"数据科技有限",
+            "searchInputSelector": "#txtSearch",
+            "url": "http://jl.gsxt.gov.cn/",
+            "successIndicatorSelector": ".m-search-list",
+            "resultIndicatorSelector": ".m-searchresult-inoformation"
         }
         page = requests.post(url, json=json)
     except:
